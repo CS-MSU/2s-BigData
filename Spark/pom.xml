@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<modelVersion>4.0.0</modelVersion>
+
+<groupId>org.example</groupId>
+<artifactId>Spark</artifactId>
+<version>1.0-SNAPSHOT</version>
+
+<properties>
+    <encoding>UTF-8</encoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <spark.version>2.4.0-cdh6.3.2</spark.version>
+    <scala.version>2.11</scala.version>
+    <fasterxml.jackson.version>2.6.7.1</fasterxml.jackson.version>
+    <project.local.repo.path>repo</project.local.repo.path>
+    <kafka.version>2.2.1-cdh6.3.2</kafka.version>
+</properties>
+
+<dependencies>
+    <dependency>
+        <groupId>org.apache.spark</groupId>
+        <artifactId>spark-core_${scala.version}</artifactId>
+        <version>${spark.version}</version>
+        <scope>provided</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.spark</groupId>
+        <artifactId>spark-sql_${scala.version}</artifactId>
+        <version>${spark.version}</version>
+        <scope>provided</scope>
+    </dependency>
+    <dependency>
+        <groupId>com.databricks</groupId>
+        <artifactId>spark-xml_${scala.version}</artifactId>
+        <version>0.9.0</version>
+    </dependency>
+    <dependency>
+        <groupId>com.databricks</groupId>
+        <artifactId>spark-csv_${scala.version}</artifactId>
+        <version>1.5.0</version>
+    </dependency>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.12</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.mongodb.spark</groupId>
+        <artifactId>mongo-spark-connector_2.11</artifactId>
+        <version>2.4.1</version>
+    </dependency>
+
+    <dependency>
+        <groupId>com.twitter</groupId>
+        <artifactId>hbc-core</artifactId>
+        <version>2.2.0</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.kafka</groupId>
+        <artifactId>kafka-clients</artifactId>
+        <version>${kafka.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpcore</artifactId>
+        <version>4.2.4</version>
+    </dependency>
+
+    <dependency>
+        <groupId>com.oracle.ojdbc8</groupId>
+        <artifactId>ojdbc8</artifactId>
+        <version>18.3</version>
+    </dependency>
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${fasterxml.jackson.version}</version>
+    </dependency>
+</dependencies>
+
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>2.4.3</version>
+            <configuration>
+                <createDependencyReducedPom>false</createDependencyReducedPom>
+            </configuration>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>shade</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+
+<repositories>
+    <repository>
+        <id>project.local</id>
+        <name>project</name>
+        <url>file:${project.local.repo.path}</url>
+    </repository>
+    <repository>
+        <id>cloudera</id>
+        <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
+    </repository>
+</repositories>
+
+<profiles>
+    <profile>
+        <id>local_without_hadoop</id>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-core_${scala.version}</artifactId>
+                <version>${spark.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-sql_${scala.version}</artifactId>
+                <version>${spark.version}</version>
+                <scope>compile</scope>
+            </dependency>
+        </dependencies>
+    </profile>
+</profiles>
+
+
+</project>

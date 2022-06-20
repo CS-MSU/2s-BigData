@@ -1,0 +1,16 @@
+cs/msu/QuestionsAnswers$AnswerMapper.class
+cs/msu/QuestionsAnswers$QuestionMapper.class
+cs/msu/RussianUsers$FilterMapper.class
+cs/msu/Questions$FilterMapper.class
+cs/msu/QuestionsAnswers.class
+cs/msu/HadoopRussia$AnswersMapper.class
+cs/msu/HadoopRussia$JoinReducer.class
+cs/msu/HadoopRussia$UsersMapper.class
+cs/msu/HadoopRussia.class
+cs/msu/SequenceFileUtils.class
+cs/msu/XmlUtils.class
+cs/msu/Questions.class
+cs/msu/RussianUsers.class
+cs/msu/QuestionsAnswers$JoinReducer.class
+cs/msu/ConvertToSequenceFile$XmlSourceMapper.class
+cs/msu/ConvertToSequenceFile.class

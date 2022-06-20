@@ -1,0 +1,12 @@
+hdfs dfs -copyToLocal /user/mirpulatov/mr.jar
+
+hadoop jar mr.jar cs.msu.Questions /user/stud/stackoverflow/landing/Posts /user/mirpulatov/query1
+
+hadoop jar mr.jar cs.msu.QuestionsAnswers /user/mirpulatov/query1 /user/stud/stackoverflow/landing/Posts /user/mirpulatov/query2
+
+hadoop jar mr.jar cs.msu.RussianUsers /user/stud/stackoverflow/landing/Users /user/mirpulatov/query3
+
+hadoop jar mr.jar cs.msu.HadoopRussia /user/mirpulatov/query2 /user/mirpulatov/query3 /user/mirpulatov/query4
+
+hdfs dfs -chmod 777 /user/mirpulatov/query4
+
